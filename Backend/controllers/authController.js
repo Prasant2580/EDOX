@@ -172,7 +172,7 @@ exports.forgotPassword = async (req, res) => {
         user.resetPasswordExpires = Date.now() + 15 * 60 * 1000
         await user.save()
 
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
+        const frontendUrl = process.env.FRONTEND_URL'
         const resetUrl = `${frontendUrl}/reset-password/${resetToken}`
 
         const transporter = createEmailTransporter()
