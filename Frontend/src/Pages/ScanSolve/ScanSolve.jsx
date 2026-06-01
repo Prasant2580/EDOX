@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Navbar from "../../Component/Navbar/navbar.jsx";
+import Navbar from "../../Component/Navbar/Navbar.jsx";
 
 export default function ScanSolve() {
   const [question, setQuestion] = useState("");
