@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import { Bell, BookOpen, LayoutDashboard, Menu, Plus, Search, X } from "lucide-react";
 import Calendar from "./Calendar";
-import Navbar from "../../Component/Navbar/navbar.jsx";
+import Navbar from "../../Component/Navbar/Navbar.jsx";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
