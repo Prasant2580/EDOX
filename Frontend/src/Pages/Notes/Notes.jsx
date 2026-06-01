@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X, LayoutDashboard, BookOpen, Plus, Trash2, Edit2, Download } from "lucide-react";
-import Navbar from "../../Component/Navbar/navbar.jsx";
+import Navbar from "../../Component/Navbar/Navbar.jsx";
 import { useNavigate } from "react-router-dom";
 import { notesAPI } from "../../services/api.js";
 
