@@ -1,4 +1,4 @@
-import Navbar from "../../Component/Navbar/navbar";
+import Navbar from "../../Component/Navbar/Navbar.jsx";
 
 export default function AboutUs() {
   return (
