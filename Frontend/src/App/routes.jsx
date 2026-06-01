@@ -10,6 +10,9 @@ import Account from "../Pages/Account/account.jsx"
 import Snapsolve from "../Pages/ScanSolve/ScanSolve.jsx"
 import AdminLogin from "../Pages/Admin/login.jsx"
 import AdminDashboard from "../Pages/Admin/Admin.jsx"
+import AdminNotes from "../Pages/Admin/AdminNotes.jsx"
+import QuizPage from "../Pages/Quiz/quiz.jsx"
+import Notes from "../Pages/Notes/Notes.jsx"
 
 
 export default function Approutes() {
@@ -23,11 +26,11 @@ export default function Approutes() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/snap&solve" element={<Snapsolve />} />
+                <Route path="/quiz" element={<QuizPage />} />
+                <Route path="/notes" element={<Notes />} />
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
-
-
+                <Route path="/admin/notes" element={<AdminNotes />} />
             </Routes>
     );
 }

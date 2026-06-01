@@ -93,7 +93,7 @@
 
 .navbar-mobile-menu .navbar-link {
   display: block;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 @media (min-width: 768px) {

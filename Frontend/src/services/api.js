@@ -32,4 +32,15 @@ export const authAPI = {
     api.post(`/auth/reset-password/${token}`, { password }),
 };
 
+export const notesAPI = {
+  fetchNotes: () => api.get('/notes'),
+  createNote: (formData) => api.post('/notes', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  }),
+  updateNote: (id, formData) => api.put(`/notes/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  }),
+  deleteNote: (id) => api.delete(`/notes/${id}`),
+};
+
 export default api;

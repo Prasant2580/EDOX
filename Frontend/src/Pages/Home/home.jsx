@@ -68,43 +68,40 @@
 
 
 
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function LearningFromHome() {
-  const [isDark, setIsDark] = useState(false);
-
-  const themeRoot = isDark ? 'bg-slate-950 text-slate-100' : 'bg-[#f8fafc] text-gray-900';
-  const navTheme = isDark ? 'bg-slate-950/70 border-slate-800' : 'bg-white/40 border-white/20';
-  const heroHeadingColor = isDark ? 'text-white' : 'text-gray-900';
-  const heroTextColor = isDark ? 'text-slate-300' : 'text-gray-600';
-  const badgeTheme = isDark ? 'bg-orange-200/10 text-orange-300 ring-1 ring-orange-300/30' : 'bg-orange-100 text-orange-600';
-  const watchButtonTheme = isDark ? 'border-slate-700 bg-slate-900/80 text-slate-100 hover:bg-slate-800' : 'border-gray-300 bg-white/70 text-slate-900 hover:bg-white';
-  const floatCardTheme = isDark ? 'bg-slate-900/80 border-slate-800 text-slate-100' : 'bg-white/70 border-white/30 text-slate-900';
-  const floatCardSubText = isDark ? 'text-slate-400' : 'text-gray-500';
-  const floatCardValueText = isDark ? 'text-white' : 'text-gray-900';
-  const imageBorder = isDark ? 'border-slate-800' : 'border-white/30';
-  const featureCardTheme = isDark ? 'bg-slate-900/70 border-slate-800' : 'bg-white/60 border-white/30';
-  const featureTitleColor = isDark ? 'text-white' : 'text-gray-900';
-  const featureDescColor = isDark ? 'text-slate-300' : 'text-gray-600';
-  const sectionHeadingColor = isDark ? 'text-white' : 'text-gray-900';
-  const sectionSubtextColor = isDark ? 'text-slate-300' : 'text-gray-500';
-  const premiumWhiteCardTheme = isDark ? 'bg-slate-900/70 border-slate-800 text-slate-100' : 'bg-white/70 border-white/30 text-gray-900';
-  const premiumCyanCardTheme = isDark ? 'bg-slate-800 text-slate-100' : 'bg-cyan-100 text-gray-900';
-  const premiumPurpleCardTheme = isDark ? 'bg-slate-800 text-slate-100' : 'bg-purple-100 text-gray-900';
-  const premiumTextColor = isDark ? 'text-slate-300' : 'text-gray-500';
-  const footerTheme = isDark ? 'border-slate-700 bg-slate-900/90' : 'border-t border-gray-200 bg-white/40';
+  const themeRoot = 'bg-[#f8fafc] text-gray-900';
+  const navTheme = 'bg-white/40 border-white/20';
+  const heroHeadingColor = 'text-gray-900';
+  const heroTextColor = 'text-gray-600';
+  const badgeTheme = 'bg-orange-100 text-orange-600';
+  const watchButtonTheme = 'border-gray-300 bg-white/70 text-slate-900 hover:bg-white';
+  const floatCardTheme = 'bg-white/70 border-white/30 text-slate-900';
+  const floatCardSubText = 'text-gray-500';
+  const floatCardValueText = 'text-gray-900';
+  const imageBorder = 'border-white/30';
+  const featureCardTheme = 'bg-white/60 border-white/30';
+  const featureTitleColor = 'text-gray-900';
+  const featureDescColor = 'text-gray-600';
+  const sectionHeadingColor = 'text-gray-900';
+  const sectionSubtextColor = 'text-gray-500';
+  const premiumWhiteCardTheme = 'bg-white/70 border-white/30 text-gray-900';
+  const premiumCyanCardTheme = 'bg-cyan-100 text-gray-900';
+  const premiumPurpleCardTheme = 'bg-purple-100 text-gray-900';
+  const premiumTextColor = 'text-gray-500';
+  const footerTheme = 'border-t border-gray-200 bg-white/40';
   
-  function Stat({ value, label, isDark }) {
+  function Stat({ value, label }) {
     return (
-      <div className={`backdrop-blur-xl rounded-2xl px-6 py-5 shadow-lg hover:-translate-y-2 transition-all duration-300 text-center ${isDark ? 'bg-slate-900/70 border border-slate-800' : 'bg-white/60 border border-white/30'}`}>
+      <div className="backdrop-blur-xl rounded-2xl px-6 py-5 shadow-lg hover:-translate-y-2 transition-all duration-300 text-center bg-white/60 border border-white/30">
 
-        <div className={`text-2xl md:text-3xl font-black mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <div className="text-2xl md:text-3xl font-black mb-1 text-gray-900">
           {value}
         </div>
 
-        <div className={`text-sm ${isDark ? 'text-slate-300' : 'text-gray-500'}`}>
+        <div className="text-sm text-gray-500">
           {label}
         </div>
 
@@ -116,33 +113,26 @@ export default function LearningFromHome() {
     <div className={`relative overflow-hidden min-h-screen ${themeRoot}`}>
 
       {/* Animated Gradient Blobs */}
-      <div className="absolute top-[-120px] left-[-100px] w-[350px] h-[350px] bg-purple-400/30 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-[-120px] right-[-100px] w-[350px] h-[350px] bg-cyan-400/30 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute top-[40%] left-[45%] w-[250px] h-[250px] bg-orange-300/20 rounded-full blur-3xl animate-bounce" />
+      <div className="absolute -top-30 -left-25 w-87.5 h-87.5 bg-purple-400/30 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute -bottom-30 -right-25 w-87.5 h-87.5 bg-cyan-400/30 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-[40%] left-[45%] w-62.5 h-62.5 bg-orange-300/20 rounded-full blur-3xl animate-bounce" />
 
       {/* NAVBAR */}
       <header className={`sticky top-0 z-50 backdrop-blur-xl ${navTheme}`}>
 
         <nav className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <h1 className="text-2xl md:text-3xl font-black tracking-tight">
+          <h3 className="text-2xl md:text-3xl font-black tracking-tight">
             EDOX
-          </h1>
+          </h3>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <Link
               to="/auth"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 transition-all duration-300"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-linear-to-r from-orange-400 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 transition-all duration-300"
             >
               Get Started
             </Link>
 
-            <button
-              type="button"
-              onClick={() => setIsDark((prev) => !prev)}
-              className={`px-4 py-2.5 rounded-full font-semibold border transition-all duration-300 ${isDark ? 'border-slate-600 bg-slate-800 text-slate-100 hover:bg-slate-700' : 'border-slate-200 bg-white/90 text-slate-900 hover:bg-slate-100'}`}
-            >
-              {isDark ? 'Light Mode' : 'Dark Mode'}
-            </button>
           </div>
 
         </nav>
@@ -173,24 +163,24 @@ export default function LearningFromHome() {
             From Anywhere
           </motion.h1>
 
-          <p className={`text-lg max-w-xl leading-relaxed mb-8 ${heroTextColor}`}>
+          <p className={`text-lg max-w-3xl leading-relaxed mb-8 ${heroTextColor}`}>
             Unlock your future with interactive online learning,
             AI-powered study support, and premium courses designed
             for modern students.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto">
-            <Link to="/auth" className="inline-flex justify-center w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300">
+            <Link to="/auth" className="inline-flex justify-center w-full sm:w-auto px-8 py-4 rounded-full bg-linear-to-r from-orange-400 to-pink-500 text-white font-semibold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300">
               Start Learning
             </Link>
           </div>
 
           {/* STATS */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-xl mx-auto sm:mx-0">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-xl mx-auto sm:mx-0">
             <Stat value="350+" label="Subject Classes" isDark={isDark} />
             <Stat value="400+" label="Video Materials" isDark={isDark} />
             <Stat value="1500+" label="Happy Students" isDark={isDark} />
-          </div>
+          </div> */}
 
         </motion.div>
 
@@ -199,11 +189,11 @@ export default function LearningFromHome() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative flex justify-center min-h-[380px]"
+          className="relative flex justify-center min-h-95"
         >
 
           {/* Main Glow */}
-          <div className="absolute w-[420px] h-[420px] bg-gradient-to-br from-orange-300 to-pink-400 rounded-full blur-3xl opacity-30 animate-pulse" />
+          <div className="absolute w-105 h-105 bg-linear-to-br from-orange-300 to-pink-400 rounded-full blur-3xl opacity-30 animate-pulse" />
 
           {/* Floating Card 1 */}
           <motion.div
@@ -213,9 +203,9 @@ export default function LearningFromHome() {
             className={`absolute top-10 left-0 ${floatCardTheme} shadow-2xl rounded-3xl p-5 z-20 hidden md:block hover:-translate-y-3 hover:rotate-1 transition-all duration-500`}
           >
 
-            <p className={`text-sm mb-1 ${floatCardSubText}`}>
+            <label className={`text-blue-600 text-sm mb-1 ${floatCardSubText}`}>
               Learning Progress
-            </p>
+            </label>
 
             <h3 className={`text-3xl font-black ${floatCardValueText}`}>
               Increasing
@@ -235,9 +225,9 @@ export default function LearningFromHome() {
             className={`absolute bottom-10 right-0 ${floatCardTheme} shadow-2xl rounded-3xl p-5 z-20 hidden md:block hover:-translate-y-3 hover:-rotate-1 transition-all duration-500`}
           >
 
-            <p className={`text-sm mb-1 ${floatCardSubText}`}>
+            <label className={`text-blue-600 text-sm mb-1 ${floatCardSubText}`}>
               AI Study Assistant
-            </p>
+            </label>
 
             <h3 className="text-2xl font-black text-green-500">
               Active
@@ -253,7 +243,7 @@ export default function LearningFromHome() {
           <img
             src="home_image.png"
             alt="Student learning online"
-            className={`relative z-10 w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] object-cover rounded-[50px] border ${imageBorder} shadow-[0_30px_100px_rgba(0,0,0,0.2)] hover:scale-105 hover:rotate-1 transition-all duration-700`}
+            className={`relative z-10 w-70 sm:w-90 md:w-105 lg:w-130 object-cover rounded-[50px] border ${imageBorder} shadow-[0_30px_100px_rgba(0,0,0,0.2)] hover:scale-105 hover:rotate-1 transition-all duration-700`}
           />
 
         </motion.div>
@@ -281,7 +271,7 @@ export default function LearningFromHome() {
             {[
               {
                 icon: '🎯',
-                title: 'Live Classes',
+                title: 'Live Interaction',
                 desc: 'Interactive sessions and real-time doubt solving.',
               },
               {
@@ -352,17 +342,17 @@ export default function LearningFromHome() {
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[240px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-[240px]">
 
             <div className="md:col-span-2 rounded-[40px]
-            bg-gradient-to-br from-orange-400 to-pink-500
+            bg-linear-to-br from-orange-400 to-pink-500
             p-10 text-white flex flex-col justify-between
             shadow-2xl hover:scale-[1.02]
             transition-all duration-500">
 
               <div>
 
-                <h3 className="text-4xl font-black mb-5">
+                <h3 className="text-3xl font-black mb-5">
                   AI Personalized Learning
                 </h3>
 
@@ -372,7 +362,7 @@ export default function LearningFromHome() {
 
               </div>
 
-              <div className="text-7xl">
+              <div className="text-5xl">
                 🧠
               </div>
 
@@ -382,7 +372,7 @@ export default function LearningFromHome() {
 
               <div>
 
-                <h3 className={`text-4xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className="text-3xl font-black text-gray-900">
                   Learn Anytime
                 </h3>
 
@@ -392,7 +382,7 @@ export default function LearningFromHome() {
 
               </div>
 
-              <div className="text-6xl">
+              <div className="text-5xl">
                 🌍
               </div>
 
@@ -415,7 +405,7 @@ export default function LearningFromHome() {
 
               </div>
 
-              <div className="text-6xl">
+              <div className="text-5xl">
                 🎥
               </div>
 
@@ -424,7 +414,7 @@ export default function LearningFromHome() {
             <div className={`rounded-[40px] ${premiumCyanCardTheme} p-8 flex flex-col justify-between hover:-translate-y-3 transition-all duration-500`}>
               <div>
 
-                <h3 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className="text-3xl font-black text-gray-900">
                   Dashboard
                 </h3>
 
@@ -434,7 +424,7 @@ export default function LearningFromHome() {
 
               </div>
 
-              <div className="text-6xl">
+              <div className="text-5xl">
                 📊
               </div>
             </div>
@@ -442,7 +432,7 @@ export default function LearningFromHome() {
             <div className={`rounded-[40px] ${premiumPurpleCardTheme} p-8 flex flex-col justify-between hover:-translate-y-3 transition-all duration-500`}>
               <div>
 
-                <h3 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className="text-3xl font-black text-gray-900">
                   Smart Practice
                 </h3>
 
@@ -452,7 +442,7 @@ export default function LearningFromHome() {
 
               </div>
 
-              <div className="text-6xl">
+              <div className="text-5xl">
                 🏆
               </div>
             </div>
@@ -466,13 +456,13 @@ export default function LearningFromHome() {
       {/* CTA SECTION */}
       <section className="px-6 md:px-10 pb-24">
 
-        <div className="max-w-6xl mx-auto bg-gradient-to-r from-gray-900 via-gray-800 to-black rounded-[40px] p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl overflow-hidden relative text-center lg:text-left">
-          <div className="absolute top-[-50px] right-[-50px] w-[180px] h-[180px] bg-orange-400/20 rounded-full blur-3xl" />
+        <div className="max-w-6xl mx-auto bg-linear-to-r from-gray-900 via-gray-800 to-black rounded-[40px] p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl overflow-hidden relative text-center lg:text-left">
+          <div className="absolute -top-12.5 -right-12.5 w-45 h-45 bg-orange-400/20 rounded-full blur-3xl" />
           <div className="w-full lg:max-w-xl">
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4">
               Start Your Learning Journey Today
-            </h2>
+            </h3>
 
             <p className="text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Join thousands of students building skills and careers through
@@ -482,7 +472,7 @@ export default function LearningFromHome() {
 
           <Link
             to="/auth"
-            className="w-full sm:w-auto inline-flex justify-center px-8 py-4 rounded-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-bold shadow-xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+            className="w-full sm:w-auto inline-flex justify-center px-8 py-4 rounded-full bg-linear-to-r from-orange-400 to-pink-500 text-white font-bold shadow-xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
           >
             Get Started Free
           </Link>
@@ -495,11 +485,11 @@ export default function LearningFromHome() {
       <section className={`${footerTheme} backdrop-blur-xl py-8 px-6 md:px-10`}>
         <div className="max-w-full mx-auto flex flex-col gap-4 md:flex-row md:items-center md:justify-between items-center justify-between">
 
-          <p className={`text-sm text-center ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+          <p className="text-sm text-center text-gray-500">
             © 2026 EDOX. All rights reserved.
           </p>
 
-          <div className={`flex flex-wrap justify-center items-center gap-4 text-sm ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+          <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-500">
             <a href="#" className="hover:text-orange-500 transition-colors">
               Privacy
             </a>

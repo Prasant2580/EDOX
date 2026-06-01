@@ -7,6 +7,21 @@ if (!process.env.GEMINI_API_KEY) {
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+function parseJSONResponse(text) {
+  if (!text) return null;
+  try {
+    return JSON.parse(text.trim());
+  } catch {
+    const match = text.match(/\[.*\]/s);
+    if (!match) return null;
+    try {
+      return JSON.parse(match[0]);
+    } catch {
+      return null;
+    }
+  }
+}
+
 // ================= TEXT SOLVE =================
 exports.solveText = async (req, res) => {
   try {
@@ -24,7 +39,8 @@ exports.solveText = async (req, res) => {
     });
 
     const result = await model.generateContent(
-      `Solve step-by-step with clear explanation:\n${question}`
+      // `Solve step-by-step with clear explanation:\n${question}`
+      `solve according to the given question and provide a clear answer against the question:\n${question}`
     );
 
     const response = result.response;
@@ -72,7 +88,7 @@ exports.solveImage = async (req, res) => {
           mimeType: file.mimetype,
         },
       },
-      "Extract the question and solve it step-by-step with explanation",
+      "Extract the question and solve it accordingly to the given text and/or image.",
     ]);
 
     const response = result.response;

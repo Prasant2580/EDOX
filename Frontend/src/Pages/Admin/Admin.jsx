@@ -130,6 +130,29 @@ export default function AdminDashboard() {
             borderRadius: '8px',
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}>
+            <h3 style={{ marginTop: 0, color: '#495057' }}>Notes Management</h3>
+            <p style={{ color: '#6c757d' }}>Upload, edit, and delete notes from a dedicated admin view</p>
+            <button
+              onClick={() => window.location.href = '/admin/notes'}
+              style={{
+                backgroundColor: '#1d4ed8',
+                color: 'white',
+                border: 'none',
+                padding: '0.5rem 1rem',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+            >
+              Manage Notes
+            </button>
+          </div>
+
+          <div style={{
+            backgroundColor: 'white',
+            padding: '1.5rem',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }}>
             <h3 style={{ marginTop: 0, color: '#495057' }}>Analytics</h3>
             <p style={{ color: '#6c757d' }}>View platform statistics and reports</p>
             <button style={{

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { Bell, BookOpen, LayoutDashboard, Menu, Plus, Search, X } from "lucide-react";
 import Calendar from "./Calendar";
 import Navbar from "../../Component/Navbar/navbar.jsx";
@@ -13,6 +13,23 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [addingCourseId, setAddingCourseId] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const desktopSearchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
+
+  const focusSearchInput = () => {
+    try {
+      if (typeof window !== "undefined" && window.matchMedia("(min-width: 640px)").matches) {
+        desktopSearchRef.current?.focus();
+      } else {
+        mobileSearchRef.current?.focus();
+      }
+    } catch (e) {
+      // fallback
+      desktopSearchRef.current?.focus();
+      mobileSearchRef.current?.focus();
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -74,7 +91,7 @@ export default function Dashboard() {
   const SidebarContent = () => (
     <>
       <div className="mb-10 flex items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold">Edox</h1>
+        <h1 className="text-3xl font-bold">Edox</h1>
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white transition hover:bg-indigo-700 md:hidden"
@@ -106,6 +123,24 @@ export default function Dashboard() {
         >
           <BookOpen className="w-4 h-4" />
           All Courses
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/quiz")}
+          className="w-full flex items-center gap-3 px-4 py-2 rounded-lg bg-indigo-500 text-white hover:bg-indigo-700 transition-colors"
+        >
+          <Plus className="w-4 h-4" />
+          Quiz
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/notes")}
+          className="w-full flex items-center gap-3 px-4 py-2 rounded-lg bg-indigo-500 text-white hover:bg-indigo-700 transition-colors"
+        >
+          <BookOpen className="w-4 h-4" />
+          Notes
         </button>
       </nav>
     </>
@@ -148,8 +183,8 @@ export default function Dashboard() {
 
         <main className="flex-1 w-full min-w-0 p-4 sm:p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
           <section className="lg:col-span-8 w-full">
-            <div className="flex justify-between items-center gap-3 mb-6">
-              <div className="flex min-w-0 items-center gap-3">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
+              <div className="flex w-full sm:w-auto min-w-0 items-center gap-3">
                 <button
                   type="button"
                   className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm md:hidden"
@@ -158,38 +193,88 @@ export default function Dashboard() {
                 >
                   <Menu className="h-5 w-5" />
                 </button>
+
                 <h2 className="truncate text-xl font-semibold">{title}</h2>
               </div>
 
-              <div className="flex shrink-0 gap-3">
-                <Search className="w-5 h-5" />
-                <Bell className="w-5 h-5" />
+              <div className="flex shrink-0 items-center gap-3 w-full sm:w-auto">
+                {/* Mobile search input (full width) */}
+                <div className="sm:hidden w-full">
+                  <input
+                    ref={mobileSearchRef}
+                    aria-label="Search courses"
+                    placeholder="Search courses..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-indigo-500"
+                  />
+                </div>
+
+                {/* Desktop search on right side */}
+                <div className="hidden sm:block">
+                  <input
+                    ref={desktopSearchRef}
+                    aria-label="Search courses"
+                    placeholder="Search courses..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-64 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-indigo-500"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={focusSearchInput}
+                  aria-label="Focus search input"
+                  className="text-slate-600 hover:text-slate-800"
+                >
+                  <Search className="w-5 h-5" />
+                </button>
               </div>
             </div>
 
-            {loading ? (
-              <p>Loading courses...</p>
-            ) : visibleCourses.length === 0 ? (
-              <p>
-                {activeView === "all"
-                  ? "No courses available."
-                  : "No courses added yet. Open All Courses and add one."}
-              </p>
-            ) : (
-              <div className="space-y-4">
-                {visibleCourses.map((course) => (
-                  <CourseCard
-                    key={course._id}
-                    course={course}
-                    isAllCoursesView={activeView === "all"}
-                    isAdded={myCourseIds.has(course._id)}
-                    isAdding={addingCourseId === course._id}
-                    onAddCourse={addCourse}
-                    navigate={navigate}
-                  />
-                ))}
-              </div>
-            )}
+            {/* Filtered results */}
+            {(() => {
+              const q = (searchQuery || "").trim().toLowerCase();
+              const filtered = q
+                ? (visibleCourses || []).filter((c) => {
+                    const hay = `${c.title || ""} ${c.description || ""}`.toLowerCase();
+                    return hay.includes(q);
+                  })
+                : visibleCourses;
+
+              if (loading) return <p>Loading courses...</p>;
+
+              if (!filtered || filtered.length === 0) {
+                if (!visibleCourses || visibleCourses.length === 0) {
+                  return (
+                    <p>
+                      {activeView === "all"
+                        ? "No courses available."
+                        : "No courses added yet. Open All Courses and add one."}
+                    </p>
+                  );
+                }
+
+                return <p>No matching courses found for "{searchQuery}".</p>;
+              }
+
+              return (
+                <div className="space-y-4">
+                  {filtered.map((course) => (
+                    <CourseCard
+                      key={course._id}
+                      course={course}
+                      isAllCoursesView={activeView === "all"}
+                      isAdded={myCourseIds.has(course._id)}
+                      isAdding={addingCourseId === course._id}
+                      onAddCourse={addCourse}
+                      navigate={navigate}
+                    />
+                  ))}
+                </div>
+              );
+            })()}
           </section>
 
           <aside className="lg:col-span-4 w-full space-y-6">
@@ -223,9 +308,9 @@ function CourseCard({
         />
 
         <div className="min-w-0">
-          <h3 className="font-semibold break-words">{course.title}</h3>
+          <h3 className="font-semibold wrap-break-word">{course.title}</h3>
 
-          <p className="text-sm text-gray-600 break-words">{course.description}</p>
+          <p className="text-sm text-gray-600 wrap-break-word">{course.description}</p>
 
           <span className="text-xs text-gray-500">
             Created by {course.author}

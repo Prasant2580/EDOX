@@ -77,7 +77,7 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-inner">
-        <div className="navbar-brand">
+        <div className="navbar-brand ">
           <div className="navbar-logo">ED</div>
           <span className="navbar-title">Edox - AI e-learning Platform</span>
         </div>
@@ -156,7 +156,7 @@ export default function Navbar() {
               ✕
             </button>
             <h2 className="settings-title">Profile Settings</h2>
-            <p className="settings-text">Update your photo, name, and password.</p>
+            <p className="settings-text ">Update your photo, name, and password.</p>
 
             <form className="settings-form" onSubmit={handleSaveSettings}>
               <div className="settings-row">
