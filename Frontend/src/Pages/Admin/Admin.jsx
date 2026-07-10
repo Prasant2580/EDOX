@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
   const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     // Check if user is logged in and is admin
@@ -92,7 +94,7 @@ export default function AdminDashboard() {
           }}>
             <h3 style={{ marginTop: 0, color: '#495057' }}>User Management</h3>
             <p style={{ color: '#6c757d' }}>Manage users, roles, and permissions</p>
-            <button style={{
+            <button onClick={() => navigate("/admin/users")} style={{
               backgroundColor: '#007bff',
               color: 'white',
               border: 'none',
@@ -112,7 +114,7 @@ export default function AdminDashboard() {
           }}>
             <h3 style={{ marginTop: 0, color: '#495057' }}>Course Management</h3>
             <p style={{ color: '#6c757d' }}>Create, edit, and manage courses</p>
-            <button style={{
+            <button onClick={() => navigate("/admin/courses")} style={{
               backgroundColor: '#28a745',
               color: 'white',
               border: 'none',
@@ -133,7 +135,7 @@ export default function AdminDashboard() {
             <h3 style={{ marginTop: 0, color: '#495057' }}>Notes Management</h3>
             <p style={{ color: '#6c757d' }}>Upload, edit, and delete notes from a dedicated admin view</p>
             <button
-              onClick={() => window.location.href = '/admin/notes'}
+              onClick={() => navigate('/admin/notes')}
               style={{
                 backgroundColor: '#1d4ed8',
                 color: 'white',
@@ -147,45 +149,8 @@ export default function AdminDashboard() {
             </button>
           </div>
 
-          <div style={{
-            backgroundColor: 'white',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ marginTop: 0, color: '#495057' }}>Analytics</h3>
-            <p style={{ color: '#6c757d' }}>View platform statistics and reports</p>
-            <button style={{
-              backgroundColor: '#17a2b8',
-              color: 'white',
-              border: 'none',
-              padding: '0.5rem 1rem',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}>
-              View Analytics
-            </button>
-          </div>
 
-          <div style={{
-            backgroundColor: 'white',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ marginTop: 0, color: '#495057' }}>System Settings</h3>
-            <p style={{ color: '#6c757d' }}>Configure platform settings</p>
-            <button style={{
-              backgroundColor: '#6f42c1',
-              color: 'white',
-              border: 'none',
-              padding: '0.5rem 1rem',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}>
-              Settings
-            </button>
-          </div>
+
         </div>
       </main>
     </div>

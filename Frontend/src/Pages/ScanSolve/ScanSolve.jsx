@@ -1,6 +1,58 @@
 import { useState } from "react";
-import axios from "axios";
 import Navbar from "../../Component/Navbar/Navbar.jsx";
+import api from "../../services/api.js";
+
+function renderInline(text) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+    part.startsWith("**") && part.endsWith("**")
+      ? <strong key={index}>{part.slice(2, -2)}</strong>
+      : part
+  );
+}
+
+function FormattedAnswer({ answer }) {
+  const lines = answer.split("\n");
+  const blocks = [];
+
+  for (let index = 0; index < lines.length;) {
+    const line = lines[index].trim();
+    if (!line) { index += 1; continue; }
+
+    const heading = line.match(/^(#{1,3})\s+(.+)$/);
+    if (heading) {
+      const Heading = `h${heading[1].length}`;
+      blocks.push(<Heading key={index} className="mt-5 first:mt-0 text-base font-bold text-white">{renderInline(heading[2])}</Heading>);
+      index += 1;
+      continue;
+    }
+    if (/^-{3,}$/.test(line)) {
+      blocks.push(<hr key={index} className="my-5 border-purple-400/25" />);
+      index += 1;
+      continue;
+    }
+
+    const ordered = line.match(/^\d+\.\s+(.+)$/);
+    const unordered = line.match(/^[-*]\s+(.+)$/);
+    if (ordered || unordered) {
+      const isOrdered = Boolean(ordered);
+      const items = [];
+      while (index < lines.length) {
+        const item = lines[index].trim().match(isOrdered ? /^\d+\.\s+(.+)$/ : /^[-*]\s+(.+)$/);
+        if (!item) break;
+        items.push(<li key={index}>{renderInline(item[1])}</li>);
+        index += 1;
+      }
+      const List = isOrdered ? "ol" : "ul";
+      blocks.push(<List key={`list-${index}`} className={`my-3 space-y-2 pl-5 ${isOrdered ? "list-decimal" : "list-disc"}`}>{items}</List>);
+      continue;
+    }
+
+    blocks.push(<p key={index} className="my-3 leading-7 first:mt-0">{renderInline(line)}</p>);
+    index += 1;
+  }
+
+  return <div className="text-sm text-slate-200">{blocks}</div>;
+}
 
 export default function ScanSolve() {
   const [question, setQuestion] = useState("");
@@ -16,11 +68,11 @@ export default function ScanSolve() {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/ai/solve-text", { question });
+      const res = await api.post("/ai/solve-text", { question: question.trim() });
       setAnswer(res.data.answer);
     } catch (err) {
       console.error(err);
-      setAnswer("Error solving problem");
+      setAnswer(err?.response?.data?.error || "Unable to solve this problem. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -35,11 +87,11 @@ export default function ScanSolve() {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/ai/solve-image", formData);
+      const res = await api.post("/ai/solve-image", formData);
       setAnswer(res.data.answer);
     } catch (err) {
       console.error(err);
-      setAnswer("Error processing image");
+      setAnswer(err?.response?.data?.error || "Unable to process this image. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -106,6 +158,7 @@ export default function ScanSolve() {
                   <input
                     id="problem-image"
                     type="file"
+                    accept="image/*"
                     onChange={(e) => setImage(e.target.files[0])}
                     className="sr-only"
                   />
@@ -129,7 +182,7 @@ export default function ScanSolve() {
                   {loading ? (
                     <p className="text-sm">Solving...</p>
                   ) : answer ? (
-                    <p className="whitespace-pre-line">{answer}</p>
+                    <FormattedAnswer answer={answer} />
                   ) : (
                     <p className="text-sm text-slate-400">No answer yet. Submit a question or upload an image to get started.</p>
                   )}
@@ -148,7 +201,7 @@ export default function ScanSolve() {
                     <div
                       key={i}
                       className={`rounded-sm ${
-                        Math.random() > 0.5 ? "bg-black" : "bg-white"
+                        (i * 7) % 3 === 0 ? "bg-black" : "bg-white"
                       }`}
                     />
                   ))}

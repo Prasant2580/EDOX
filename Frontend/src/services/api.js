@@ -32,4 +32,17 @@ export const authAPI = {
     api.post(`/auth/reset-password/${token}`, { password }),
 };
 
+export const notesAPI = {
+  fetchNotes: () => api.get('/notes'),
+  createNote: (data) => api.post('/notes', data),
+  updateNote: (id, data) => api.put(`/notes/${id}`, data),
+  deleteNote: (id) => api.delete(`/notes/${id}`),
+};
+
+export const adminAPI = {
+  fetchUsers: () => api.get('/admin/users'),
+  updateUserRole: (id, role) => api.patch(`/admin/users/${id}`, { role }),
+  deleteUser: (id) => api.delete(`/admin/users/${id}`),
+};
+
 export default api;

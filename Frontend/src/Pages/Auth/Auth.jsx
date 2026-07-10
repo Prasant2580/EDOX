@@ -1,4 +1,5 @@
 import{ useState } from "react";
+import { Link } from "react-router-dom";
 import "./Styles.css";
 import SignInForm from "./Login/SignIn";
 import SignUpForm from "./Creataccount/SignUp";
@@ -17,6 +18,9 @@ export default function App() {
     "container " + (type === "signUp" ? "right-panel-active" : "");
   return (
     <div className="App">
+      <Link to="/admin/login" className="admin-login-link">
+        Admin Login
+      </Link>
       
       <div className={containerClass} id="container">
         

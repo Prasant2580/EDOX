@@ -11,6 +11,28 @@
   background: #f6f5f7;
 }
 
+.admin-login-link {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10;
+  border-radius: 999px;
+  background: #1e293b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  margin: 0;
+  padding: 11px 18px;
+  text-transform: uppercase;
+  transition: background-color .2s ease;
+}
+
+.admin-login-link:hover {
+  background: #0f172a;
+  color: #ffffff;
+}
+
 
 
 * {
@@ -176,6 +198,12 @@ input {
   .App {
     align-items: flex-start;
     padding: 16px;
+  }
+
+  .admin-login-link {
+    position: absolute;
+    top: 12px;
+    right: 16px;
   }
 
   .container {

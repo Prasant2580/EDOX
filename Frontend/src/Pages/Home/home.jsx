@@ -1,75 +1,6 @@
 
-
-// import { Link } from 'react-router-dom';
-
-// export default function LearningFromHome() {
-//   return (
-//     <>
-//       {/* Login Button */}
-//       <div className="fixed top-4 right-4 z-10">
-//         <Link to="/auth" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-//           Sign up
-//         </Link>
-//       </div>
-
-//       {/* Hero Section */}
-//       <main className="grid min-h-screen grid-cols-1 items-center gap-10 px-5 pb-10 pt-20 sm:px-8 md:grid-cols-2 md:gap-12 md:px-12 lg:gap-[60px] lg:px-20">
-
-//         {/* Left side */}
-//         <div>
-//           <h1 className="text-4xl font-extrabold leading-[1.1] mb-6 text-black sm:text-5xl lg:text-[56px]">
-//             Learning <br /> From Home
-//           </h1>
-
-//           <p className="text-[#666] max-w-[420px] mb-8">
-//             Unlock your potential from the comfort of home with flexible,
-//             engaging online lessonss
-//           </p>
-
-//           <button className="px-8 py-3.5 rounded-full font-semibold 
-//             bg-gradient-to-r from-yellow-400 to-orange-400">
-//             Read More
-//           </button>
-
-//           <div className="grid grid-cols-3 gap-4 sm:gap-8 lg:gap-10 mt-12 text-black">
-//             <Stat value="350+" label="Subject Classes" />
-//             <Stat value="400+" label="Video Materials" />
-//             <Stat value="1500+" label="Happy Students" />
-//           </div>
-//         </div>
-
-//         {/* Right side */}
-//         <div className="relative flex justify-center md:mt-0">
-//           <div className="absolute w-[210px] h-[210px] sm:w-[280px] sm:h-[280px] bg-orange-300 
-//             rounded-[50%_0_0_0] top-[-24px] right-0 md:right-[-60px] lg:right-[-80px]" />
-
-//           <img
-//             src="home_image.png"
-//             alt="Student learning online"
-//             className="relative w-full max-w-[380px] aspect-square object-cover 
-//               rounded-[50%_50%_10%_50%] 
-//               shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
-//           />
-//         </div>
-//       </main>
-//     </>
-//   );
-// }
-
-// function Stat({ value, label }) {
-//   return (
-//     <div className="text-center">
-//       <div className="text-[20px] font-bold">{value}</div>
-//       <div className="text-sm text-[#777]">{label}</div>
-//     </div>
-//   );
-// }
-
-
-
-
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function LearningFromHome() {
   const themeRoot = 'bg-[#f8fafc] text-gray-900';
@@ -77,7 +8,6 @@ export default function LearningFromHome() {
   const heroHeadingColor = 'text-gray-900';
   const heroTextColor = 'text-gray-600';
   const badgeTheme = 'bg-orange-100 text-orange-600';
-  const watchButtonTheme = 'border-gray-300 bg-white/70 text-slate-900 hover:bg-white';
   const floatCardTheme = 'bg-white/70 border-white/30 text-slate-900';
   const floatCardSubText = 'text-gray-500';
   const floatCardValueText = 'text-gray-900';
@@ -86,7 +16,6 @@ export default function LearningFromHome() {
   const featureTitleColor = 'text-gray-900';
   const featureDescColor = 'text-gray-600';
   const sectionHeadingColor = 'text-gray-900';
-  const sectionSubtextColor = 'text-gray-500';
   const premiumWhiteCardTheme = 'bg-white/70 border-white/30 text-gray-900';
   const premiumCyanCardTheme = 'bg-cyan-100 text-gray-900';
   const premiumPurpleCardTheme = 'bg-purple-100 text-gray-900';

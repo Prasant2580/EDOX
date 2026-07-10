@@ -237,15 +237,7 @@ export default function AdminNotes() {
               </form>
             </div>
 
-            <div style={{ backgroundColor: "white", borderRadius: "16px", padding: "1.5rem", boxShadow: "0 2px 12px rgba(15, 23, 42, 0.05)" }}>
-              <h2 style={{ margin: 0, color: "#212529" }}>Admin note tips</h2>
-              <ul style={{ marginTop: "1rem", display: "grid", gap: "0.75rem", color: "#6c757d", lineHeight: 1.7 }}>
-                <li>Upload notes with files to share content across users.</li>
-                <li>Edit or delete notes anytime from the list.</li>
-                <li>Use descriptive titles so students can find notes quickly.</li>
-                <li>Attachments are available for download immediately.</li>
-              </ul>
-            </div>
+            
           </aside>
         </div>
       </main>

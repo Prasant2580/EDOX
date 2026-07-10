@@ -34,7 +34,7 @@ export default function QuizPage() {
     try {
       const payload = { topic: topic.trim(), count: questionCount };
 
-      const response = await api.post("/quiz/generate", payload);
+      const response = await api.post("/ai/quiz/generate", payload);
       let questions = Array.isArray(response.data.quiz) ? response.data.quiz : [];
 
       if (!questions.length) {
@@ -64,7 +64,7 @@ export default function QuizPage() {
       setCurrentIndex(0);
       setScore(0);
       setSelectedOption(null);
-      setFeedback("AI quiz generation failed. Please try again.");
+      setFeedback(error?.response?.data?.error || "AI quiz generation failed. Please try again.");
     } finally {
       setLoadingQuiz(false);
     }

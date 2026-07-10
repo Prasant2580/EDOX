@@ -24,7 +24,7 @@ export default function Dashboard() {
       } else {
         mobileSearchRef.current?.focus();
       }
-    } catch (e) {
+    } catch {
       // fallback
       desktopSearchRef.current?.focus();
       mobileSearchRef.current?.focus();

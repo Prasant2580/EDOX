@@ -34,7 +34,7 @@ exports.registerUser = async (req, res) => {
             name,
             email,
             password: hashedPassword,
-            role: "admin" // change to "user" if needed
+            role: "user" // change to "user" if needed
         })
 
 
@@ -172,7 +172,7 @@ exports.forgotPassword = async (req, res) => {
         user.resetPasswordExpires = Date.now() + 15 * 60 * 1000
         await user.save()
 
-        const frontendUrl = process.env.FRONTEND_URL'
+        const frontendUrl = process.env.FRONTEND_URL
         const resetUrl = `${frontendUrl}/reset-password/${resetToken}`
 
         const transporter = createEmailTransporter()

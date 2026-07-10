@@ -1,0 +1,16 @@
+.course-learning-page { min-height: 100vh; background: #f5f6fa; color: #172033; }
+.course-learning-content { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 3rem; }
+.back-button { display: inline-flex; align-items: center; gap: .5rem; border: 0; background: transparent; color: #4f46e5; font-weight: 600; cursor: pointer; padding: .4rem 0; }
+.course-learning-header { margin: 1rem 0 1.5rem; }
+.course-learning-header h1 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.25rem); }
+.course-learning-header p { margin: .5rem 0 0; color: #64748b; }
+.learning-section { margin-top: 1.5rem; padding: 1.25rem; border-radius: 1rem; background: #fff; box-shadow: 0 1px 3px rgb(15 23 42 / 10%); }
+.learning-section h2 { display: flex; align-items: center; gap: .6rem; margin: 0 0 1rem; font-size: 1.2rem; }
+.video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: .75rem; background: #0f172a; }
+.video-frame iframe, .pdf-frame { width: 100%; border: 0; }
+.video-frame iframe { position: absolute; inset: 0; height: 100%; }
+.pdf-frame { height: 720px; border-radius: .75rem; background: #f8fafc; }
+.empty-material, .course-message { color: #64748b; }
+.course-message { margin: 2rem auto; width: min(1100px, calc(100% - 2rem)); }
+.error-message { color: #b91c1c; }
+@media (max-width: 640px) { .course-learning-content { width: min(100% - 1rem, 1100px); padding-top: 1rem; } .learning-section { padding: 1rem; } .pdf-frame { height: 520px; } }
